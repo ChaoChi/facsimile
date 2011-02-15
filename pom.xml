@@ -50,11 +50,11 @@ This file should be edited manually, rather than using the Eclipse POM editor.
   <description>Facsimile discrete-event simulation/emulation library</description>
 
 <!--
-==============================================================================
+===============================================================================
 Facsimile License.
 
 Facsimile is distributed under the GNU GPLv3.
-==============================================================================
+===============================================================================
 -->
 
   <licenses>
@@ -67,11 +67,11 @@ Facsimile is distributed under the GNU GPLv3.
   </licenses>
 
 <!--
-==============================================================================
+===============================================================================
 Facsimile Organization.
 
 TODO: This ought to be formalized a little more.
-==============================================================================
+===============================================================================
 -->
 
   <organization>
@@ -80,12 +80,12 @@ TODO: This ought to be formalized a little more.
   </organization>
 
 <!--
-==============================================================================
+===============================================================================
 Facsimile Developers.
 
 If you have submitted code to the project, you should add your name, role and
 e-mail address to the list.
-==============================================================================
+===============================================================================
 -->
 
   <developers>
@@ -103,12 +103,12 @@ e-mail address to the list.
   </developers>
 
 <!--
-==============================================================================
+===============================================================================
 Issue Management System.
 
 Facsimile issues (bugs, enhancement requests, etc.) are handled through the
 LaunchPad system.
-==============================================================================
+===============================================================================
 -->
 
   <issueManagement>
@@ -117,12 +117,12 @@ LaunchPad system.
   </issueManagement>
 
 <!--
-==============================================================================
+===============================================================================
 Source Code Management.
 
 Facsimile makes use of the Subversion version control system hosted by
 SourceForge.
-==============================================================================
+===============================================================================
 -->
 
   <scm>
@@ -132,7 +132,7 @@ SourceForge.
   </scm>
 
 <!--
-==============================================================================
+===============================================================================
 Build Properties.
 
 All configuration options should be defined here, so that Facsimile build
@@ -140,7 +140,7 @@ configuration can be handled here solely.
 
 Before changing version numbers, verify that there is a corresponding version
 of the tool/library in the central Maven repository.
-==============================================================================
+===============================================================================
 -->
 
   <properties>
@@ -163,12 +163,12 @@ Version numbers of dependent libraries.
   </properties>
 
 <!--
-==============================================================================
+===============================================================================
 Build Configuration.
 
 All configuration options should be defined here, so that Facsimile build
 configuration can be handled here solely.
-==============================================================================
+===============================================================================
 -->
 
   <build>
@@ -283,9 +283,9 @@ The assembly sources are contained within the src/assemble directory.
   </build>
 
 <!--
-==============================================================================
+===============================================================================
 Facsimile Profiles.
-==============================================================================
+===============================================================================
 -->
 
   <profiles>
@@ -407,18 +407,42 @@ Reports.
 
   <reporting>
     <plugins>
+
+<!--
+TODO: Not sure what this plug-in does!
+-->
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-project-info-reports-plugin</artifactId>
       </plugin>
+
+<!--
+The Cobertura plug-in measures code and branch coverage by the test suite, in
+order to ensure that as much of the code is tested as possible.
+-->
+
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>cobertura-maven-plugin</artifactId>
       </plugin>
+
+<!--
+The Javadoc plug-in creates stand-alone documentation from Javadoc directives
+embedded within Java source code, ensuring that such documentation matches the
+source.
+-->
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
       </plugin>
+
+<!--
+The FindBugs plug-in performs static analysis of Java source code and attempts
+to identify, and issues warnings for, bad coding practices.
+-->
+
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>findbugs-maven-plugin</artifactId>
@@ -428,24 +452,33 @@ Reports.
           </formats>
         </configuration>
       </plugin>
+
+<!--
+The checkstyle plug-in is used to verify that source files are formatted
+correctly, ensuring a consistent source style.
+-->
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
+        <configuration>
+          <configLocation>FacsimileChecks.xml</configLocation>
+        </configuration>
       </plugin>
     </plugins>
   </reporting>
 
 <!--
-==============================================================================
+===============================================================================
 Facsimile assembly.
 
 This section has Maven prepare distribution packages for release, containing
 all required files.
-==============================================================================
+===============================================================================
 -->
 
 <!--
-==============================================================================
+===============================================================================
 Distribution Management.
 
 Facsimile files are distributed primarily via SourceForge.  The
@@ -458,7 +491,7 @@ CREDENTIALS *MUST* BE STORED AT:
     $HOME/.m2/settings.xml
 
 ON THE HUDSON CONTINUOUS INTEGRATION SERVER.
-==============================================================================
+===============================================================================
 -->
 
   <distributionManagement>
